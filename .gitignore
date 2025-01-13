@@ -1,0 +1,55 @@
+# Python bytecode files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Environment directories
+env/
+venv/
+ENV/
+VENV/
+
+# IDE/editor-specific files
+.vscode/
+.idea/
+
+# MacOS system files
+.DS_Store
+
+# Windows system files
+Thumbs.db
+ehthumbs.db
+
+# Log files
+*.log
+
+# Python virtual environment directory (for packages)
+Pipfile.lock
+*.egg-info/
+*.egg
+
+# PyCharm project-specific files
+*.iml
+
+# Coverage and testing
+.coverage
+*.coveragerc
+nosetests.xml
+coverage.xml
+*.hypothesis/
+
+# Mypy type checking files
+.mypy_cache/
+
+# Sphinx documentation
+_build/
+
+# Flask specific
+instance/
+.webassets-cache/
+
+# pyenv local version
+.python-version

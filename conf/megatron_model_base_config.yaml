@@ -1,0 +1,34 @@
+num_layers: 32 # For perceiver models, this is the number of cross-attention blocks. Each layer has 1 cross-attention and "num_self_attention_per_cross_attention" self-attention layers.
+hidden_size: 1280
+ffn_hidden_size: 5120 # Transformer FFN hidden size. Usually 4 * hidden_size.
+num_attention_heads: 20
+init_method_std: 0.02 # Standard deviation of the zero mean normal distribution used for weight initialization.')
+hidden_dropout: 0.1 # Dropout probability for hidden state transformer.
+attention_dropout: 0.1 # Dropout probability in the attention layer.
+ffn_dropout: 0.0 # Dropout probability in the feed-forward layer.
+position_embedding_type: 'learned_absolute' # Position embedding type. Options ['learned_absolute', 'relative', 'alibi', 'kerple']
+apply_query_key_layer_scaling: False # scale Q * K^T by 1 / layer-number.
+layernorm_epsilon: 1e-5
+persist_layer_norm: False # Use of persistent fused layer norm kernel.
+bias_activation_fusion: True # Use a kernel that fuses the bias addition from weight matrices with the subsequent activation function.
+grad_div_ar_fusion: True # Fuse grad division into torch.distributed.all_reduce
+masked_softmax_fusion: True # Use a kernel that fuses the attention softmax with it's mask.
+bias_dropout_add_fusion: True # Use a kernel that fuses the bias addition, dropout and residual connection addition.
+bias: True # Whether to use bias terms in all weight matrices.
+normalization: 'LayerNorm' # Normalization layer to use. Options are 'layernorm', 'rmsnorm'
+activation: 'gelu' # Options ['gelu', 'geglu', 'swiglu', 'reglu', 'squared-relu', 'fast-geglu', 'fast-swiglu', 'fast-reglu']
+headscale: False # Whether to learn extra parameters that scale the output of the each self-attention head.
+openai_gelu: False # Use OpenAI's GELU instead of the default GeLU
+onnx_safe: False # Use work-arounds for known problems with Torch ONNX exporter.
+fp32_residual_connection: False # Use FP32 for residual connections.
+activations_checkpoint_method: 'uniform' # 'uniform', 'block'
+activations_checkpoint_num_layers: null
+activations_checkpoint_granularity: 'selective'
+activations_checkpoint_layers_per_pipeline: null
+megatron_legacy: False # Always set to True
+normalize_attention_scores: True # Whether to scale the output Q * K^T by 1 / sqrt(hidden_size_per_head). This arg is provided as a configuration option mostly for compatibility with models that have been weight-converted from HF. You almost always want to se this to True.
+num_moe_experts: 1 # When >1, FFNs are changed to MoE layers
+moe_frequency: 1 # every Nth ffn layer will be made MoE 
+moe_dropout: 0.0 # Dropout value for MoE layers
+use_flash_attention: True # Use flash attention in self-attention module
+enable_megatron_timers: false # Megatron timers
